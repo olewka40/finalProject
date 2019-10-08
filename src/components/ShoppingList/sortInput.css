@@ -1,0 +1,122 @@
+.div {
+    font-size: 20px;
+}
+.arrows {
+    position: relative;
+    cursor: pointer;
+}
+#priceInput {
+    display: none;
+}
+#priceInput + .arrows:before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    bottom: -16px;
+    border: 10px solid transparent;
+    border-top: 10px solid green;
+    border-width: 12px 7px;
+}
+#priceInput:checked + .arrows:before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    bottom: -16px;
+    border: 10px solid transparent;
+    border-top: 10px solid gray;
+    border-width: 12px 7px;
+}
+#priceInput + .arrows:after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    bottom: 12px;
+    border: 10px solid transparent;
+    border-bottom: 10px solid gray;
+    border-width: 12px 7px;
+}
+#priceInput:checked + .arrows:after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    bottom: 12px;
+    border: 10px solid transparent;
+    border-bottom: 10px solid green;
+    border-width: 12px 7px;
+}#piecesInGramInput {
+    display: none;
+}
+#piecesInGramInput + .arrows:before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    bottom: -16px;
+    border: 10px solid transparent;
+    border-top: 10px solid green;
+    border-width: 12px 7px;
+}
+#piecesInGramInput:checked + .arrows:before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    bottom: -16px;
+    border: 10px solid transparent;
+    border-top: 10px solid gray;
+    border-width: 12px 7px;
+}
+#piecesInGramInput + .arrows:after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    bottom: 12px;
+    border: 10px solid transparent;
+    border-bottom: 10px solid gray;
+    border-width: 12px 7px;
+}
+#piecesInGramInput:checked + .arrows:after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    bottom: 12px;
+    border: 10px solid transparent;
+    border-bottom: 10px solid green;
+    border-width: 12px 7px;
+}#piecesInput {
+    display: none;
+}
+#piecesInput + .arrows:before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    bottom: -16px;
+    border: 10px solid transparent;
+    border-top: 10px solid green;
+    border-width: 12px 7px;
+}
+#piecesInput:checked + .arrows:before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    bottom: -16px;
+    border: 10px solid transparent;
+    border-top: 10px solid gray;
+    border-width: 12px 7px;
+}
+#piecesInput + .arrows:after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    bottom: 12px;
+    border: 10px solid transparent;
+    border-bottom: 10px solid gray;
+    border-width: 12px 7px;
+}
+#piecesInput:checked + .arrows:after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    bottom: 12px;
+    border: 10px solid transparent;
+    border-bottom: 10px solid green;
+    border-width: 12px 7px;
+}

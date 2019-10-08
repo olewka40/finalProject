@@ -1,0 +1,21 @@
+.wrap{
+width: 100%;
+}
+.container{
+    min-width: 100% ;
+    display:flex;
+    flex-wrap: wrap;
+}
+.container{
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.card {
+    width: 400px;
+    margin-right: 25px;
+    margin-top: 10px;
+    margin-left: -5px;
+
+}
