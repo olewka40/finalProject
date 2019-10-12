@@ -62,6 +62,7 @@ class ModalWindow extends React.Component {
             { address: data ? data.value : '' }
         );
     };
+    
 
     render() {
         const {  visible } = this.props;
