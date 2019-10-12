@@ -16,23 +16,32 @@ class ListOfLists extends React.Component {
             itemId: "",
             visible: false
         }
-    }
+    };
 
     componentDidMount() {
         const { listData } = this.props;
         const data = listData || [];
 
-        this.setState({
-            data,
-        });
-    }
+        if (data.length === 0) {
+            this.setState({
+                data,
+                visible:true
+            });
+        }
+        else {
+            this.setState({
+                data,
+            });
+        }
+
+    };
 
     replaceModalItem = ( id ) => {
         this.setState({
             itemId: id,
             visible: true
         });
-    }
+    };
 
     saveModal = ( item ) => {
         const { itemId, data } = this.state;
@@ -46,14 +55,13 @@ class ListOfLists extends React.Component {
             visible: false
         });
         updateData(data);
-
-    }
+    };
 
     closeModal = () => {
         this.setState({
             visible: false
         })
-    }
+    };
 
     deleteItem = ( id ) => {
         const { data } = this.state;
@@ -62,11 +70,11 @@ class ListOfLists extends React.Component {
 
         this.setState({ data: filteredData  });
         updateData(filteredData);
-    }
+    };
 
     addItem = () => {
         this.replaceModalItem();
-    }
+    };
 
     testData = () => {
         const { testData , updateData} = this.props;
@@ -74,7 +82,7 @@ class ListOfLists extends React.Component {
             data: testData
         });
         updateData(testData);
-    }
+    };
 
 
     render() {
@@ -85,12 +93,12 @@ class ListOfLists extends React.Component {
 
             <div className="wrap">
                 <div>
+                    <div>
+                        <h1 className="welcome">Добро пожаловать в список покупок в магазинах! </h1>
+                    </div>
                     <Button className="btn btn-primary" onClick={() => this.addItem()} >
                         Добавить Предмет
                     </Button>
-                    {/*<Button className="btn btn-warning" onClick={this.testData}>*/}
-                        {/*Режим отладки*/}
-                    {/*</Button>*/}
                     <Button className="btn btn-success" onClick={() => updateData(data)}>
                         Сохранить данные
                     </Button>
@@ -101,6 +109,7 @@ class ListOfLists extends React.Component {
                         <Card key={id} className="card"  title={item.name} extra={<Link to={`/${item.id}`} style={{ width: 1400 }} > Открыть </Link>} >
                             <p>Общая цена: {item.totalPrice} </p>
                             <p>Дата создания: {item.dateOfCreate}</p>
+                            <p>Адрес: {item.address}</p>
                             <Button id="idModal" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => this.replaceModalItem(item.id)} >
                                 Редактировать
                             </Button>
@@ -116,6 +125,7 @@ class ListOfLists extends React.Component {
                     visible = {visible}
                     name={modalData.name || ''}
                     dateOfCreate={modalData.dateOfCreate || ''}
+                    address={modalData.address || ''}
                     saveModal={this.saveModal }
                     closeModal={this.closeModal}
                 />

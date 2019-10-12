@@ -69,12 +69,14 @@ const defaultData = () => {
             name: "Дикси",
             dateOfCreate: "2019-02-07",
             totalPrice: totalPrice,
+            address: "Москва",
             list: renderList
         },
         {
             id: uuid(),
             name: "Магнит",
             dateOfCreate: "2018-08-07",
+            address: "Калуга",
             totalPrice: "",
             list: []
         }

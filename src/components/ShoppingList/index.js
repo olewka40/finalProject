@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import "./index.css";
 import "./sortInput.css";
 import ModalWindow from "./modal.js";
+// import NavBar from "../NavBar/index";
 import uuid from "uuid";
 import { Button } from "../../styles/styles"
 
@@ -12,6 +13,7 @@ class ShoppingList extends Component {
         super(props);
         this.state = {
             data: [],
+            allData: [],
             itemId: "",
             visible: false,
             direction: {
@@ -27,10 +29,19 @@ class ShoppingList extends Component {
         const { listData, id } = this.props;
         const allData = listData || [];
         const shoppingList = allData.find(item => item.id === id) || { list: []};
-
-        this.setState({
-            data: shoppingList.list,
-        })
+        if (shoppingList.list.length === 0) {
+            this.setState({
+                data: shoppingList.list,
+                allData: allData,
+                visible: true,
+            })
+        }
+        else {
+            this.setState({
+                data: shoppingList.list,
+                allData: allData,
+            })
+        }
     }
 
     componentWillUnmount() {
@@ -97,10 +108,10 @@ class ShoppingList extends Component {
     }
     deleteItem = ( id ) => {
         const { data } = this.state;
-        const { updateData } = this.props;
-        const filteredData = data.filter(item => item.id !== id)
+        const { updateData, listData} = this.props;
+        const filteredData = data.filter(item => item.id !== id);
         this.setState({ data: filteredData });
-        updateData(data);
+        updateData(listData, filteredData, id);
 
     }
 
@@ -109,12 +120,15 @@ class ShoppingList extends Component {
     }
 
     render() {
-        const { itemId, visible, data } = this.state;
+        const { itemId, visible, data, allData } = this.state;
         const { updateData, listData, id } = this.props;
         let modalData = data.find(el => el.id ===itemId ) || {};
 
         return (
             <div>
+                <div>
+                    <h1 className="welcome">Вы в списке покупок магазина: <Link to={'/'}> {allData.name} </Link> </h1>
+                </div>
                 <table className="table table-striped">
                     <thead>
                     <tr>
@@ -128,7 +142,6 @@ class ShoppingList extends Component {
                                 </div>
                             </div>
                         </th>
-                        <th>Город</th>
                         <th>Дата создания</th>
                         <th>
                             <div>
@@ -160,7 +173,6 @@ class ShoppingList extends Component {
                         <tr key={id} >
                             <td>{item.name}</td>
                             <td>{item.price}</td>
-                            <td>{item.city}</td>
                             <td>{item.dateOfCreate}</td>
                             <td>{item.pieces}</td>
                             <td>{item.piecesInGram}</td>
@@ -184,23 +196,25 @@ class ShoppingList extends Component {
                         Вернуться
                     </Button>
                 </Link>
-                <Button className="btn btn-success" onClick={() => updateData(listData, data, id)}>
-                    Обновить данные
-                </Button>
                 </div>
 
-                    <ModalWindow
+                <ModalWindow
                     item={modalData || {}}
                     visible = {visible}
                     name={modalData.name || ''}
                     price={modalData.price || ''}
-                    city={modalData.city || ''}
                     dateOfCreate={modalData.dateOfCreate || ''}
                     pieces={modalData.pieces || ''}
                     piecesInGram={modalData.piecesInGram || ''}
                     saveModal={this.saveModal}
                     closeModal={this.closeModal}
                 />
+                {/*<NavBar*/}
+                {/*    updateData={updateData}*/}
+                {/*    listData={listData}*/}
+                {/*    data={data}*/}
+                {/*    id={id}*/}
+                {/*/>*/}
             </div>
         );
     }

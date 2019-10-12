@@ -1,12 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'antd';
 import "./index.css";
-import { ReactDadata } from 'react-dadata';
 import { InputModal } from '../../styles/styles';
-
-
-
-const token = '939c4943fe50952cc56bdee4a1c729d7759ca6d1';
 
 class ModalWindow extends React.Component {
     state = {
@@ -20,7 +15,6 @@ class ModalWindow extends React.Component {
             name: '',
             price: '',
             dateOfCreate: '',
-            city: '',
             pieces: '',
             piecesInGram: ''
         }
@@ -31,7 +25,6 @@ class ModalWindow extends React.Component {
             name: nextProps.name,
             price: nextProps.price,
             dateOfCreate: nextProps.dateOfCreate,
-            city: nextProps.city,
             pieces: nextProps.pieces,
             piecesInGram: nextProps.piecesInGram
         });
@@ -67,9 +60,9 @@ class ModalWindow extends React.Component {
         event.preventDefault();
         this.setState({ loading: true });
         const { item } = this.props;
-        const { name, price, dateOfCreate, city , pieces, piecesInGram } = this.state;
-        this.props.saveModal({ ...item, name, price, dateOfCreate, city , pieces, piecesInGram })
-        this.setState({ loading: false, visible: false ,name: '', price: '', dateOfCreate: '', city: '', pieces: '', piecesInGram: ''})
+        const { name, price, dateOfCreate, pieces, piecesInGram } = this.state;
+        this.props.saveModal({ ...item, name, price, dateOfCreate, pieces, piecesInGram })
+        this.setState({ loading: false, visible: false ,name: '', price: '', dateOfCreate: '', pieces: '', piecesInGram: ''})
     }
 
     handleCancel = () => {
@@ -78,15 +71,6 @@ class ModalWindow extends React.Component {
             this.setState({ loading: false, visible: false });
         }, );
     };
-
-    handleType = e => this.setState({ city: e.target.value });
-
-    handleChange = data => {
-        this.setState(
-            { city: data ? data.value : '' }
-        );
-    };
-
     fakeSubmit = () => {
         let submitInput = document.getElementById('submitInput');
 
@@ -96,10 +80,9 @@ class ModalWindow extends React.Component {
 
     render() {
         const { visible } = this.props;
-        const { name, price, dateOfCreate, city, pieces, piecesInGram } = this.state;
+        const { name, price, dateOfCreate, pieces, piecesInGram } = this.state;
         return (
             <div>
-                <p onChange={this.handleType} />
                 <Modal
                     visible={visible}
                     title="Меню редактирования"
@@ -113,17 +96,6 @@ class ModalWindow extends React.Component {
                 <form className="form" onSubmit={this.saveModal} >
                     <InputModal value={name} required placeholder="Наименование" onChange={(e) => this.nameSet(e)} />
                     <InputModal value={price} type="number" min="0" required placeholder="Цена" onChange={(e) => this.priceSet(e)} />
-                        <ReactDadata
-                            component={'span'}
-                            value={city}
-                            className="data"
-                            token={token}
-                            placeholder="Адрес"
-                            type="address"
-                            query={this.state.city}
-                            onChange={this.handleChange}
-                            allowClear
-                        />
                     <InputModal value={dateOfCreate} type="date" required placeholder="Дата создания" onChange={(e) => this.dateOfCreateSet(e)} />
                     <InputModal value={pieces} type="number" min="0" required  placeholder="Количество(шт)" onChange={(e) => this.piecesSet(e)} />
                     <InputModal value={piecesInGram} type="number" min="0"  placeholder="Количество(грамм)" onChange={(e) => this.piecesInGramSet(e)} />
