@@ -22,7 +22,7 @@ body {
   color: #f5f5f5;
   font-weight: 700;
   text-transform: uppercase;
-  animation: blur 1.75s ease infinite;
+  animation: blur 3s ease infinite;
   animation-direction: alternate-reverse;
 }
 @keyframes blur {
@@ -30,6 +30,9 @@ body {
     text-shadow:
     0px 0px 1px #007bff,
     0px 0px 10px #007bff,
+    0px 0px 25px #007bff,
+    0px 0px 25px #007bff,
+    0px 0px 25px #007bff,
     0px 0px 25px #007bff,
     0px 0px 25px #007bff,
     0px 0px 25px #007bff,

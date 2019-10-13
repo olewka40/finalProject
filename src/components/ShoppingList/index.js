@@ -32,7 +32,7 @@ class ShoppingList extends Component {
         if (shoppingList.list.length === 0) {
             this.setState({
                 data: shoppingList.list,
-                allData: allData,
+                allData: shoppingList,
                 visible: true,
             })
         }
@@ -79,14 +79,14 @@ class ShoppingList extends Component {
                     : 'asc'
             }
         })
-    }
+    };
 
     replaceModalItem = ( id ) => {
         this.setState({
             itemId: id,
             visible: true
         });
-    }
+    };
 
     saveModal = ( item ) => {
         const { itemId, data } = this.state;
@@ -100,12 +100,12 @@ class ShoppingList extends Component {
             visible: false
         });
         // update
-    }
+    };
     closeModal = () => {
         this.setState({
             visible: false
         })
-    }
+    };
     deleteItem = ( id ) => {
         const { data } = this.state;
         const { updateData, listData} = this.props;
@@ -113,14 +113,15 @@ class ShoppingList extends Component {
         this.setState({ data: filteredData });
         updateData(listData, filteredData, id);
 
-    }
+    };
 
     addItem = () =>{
         this.replaceModalItem();
-    }
+    };
 
     render() {
         const { itemId, visible, data, allData } = this.state;
+        console.log(allData);
         const { updateData, listData, id } = this.props;
         let modalData = data.find(el => el.id ===itemId ) || {};
 
@@ -136,17 +137,18 @@ class ShoppingList extends Component {
                         <th>
                             <div>
                                 <div className="sort">
-                                    <div className="text">Цена</div>
+                                    <div className="text">Цена (RUB)</div>
                                     <input onClick={() => this.sortBy('price')} type="checkbox" id="priceInput"/>
                                     <label htmlFor="priceInput" className="arrows"/>
                                 </div>
                             </div>
                         </th>
-                        <th>Дата создания</th>
+                        <th>Дата изготовления</th>
+                        <th>Срок годности (дни)</th>
                         <th>
                             <div>
                                 <div className="sort">
-                                    <div className="text">Количество</div>
+                                    <div className="text">Количество  (шт.)</div>
                                     <input onClick={() => this.sortBy('pieces')} type="checkbox" id="piecesInput"/>
                                     <label htmlFor="piecesInput" className="arrows"/>
                                 </div>
@@ -155,7 +157,7 @@ class ShoppingList extends Component {
                         <th>
                             <div>
                                 <div className="sort">
-                                    <div className="text">Граммы</div>
+                                    <div className="text">Граммов в одной шт.</div>
                                     <input onClick={() => this.sortBy('piecesInGram')} type="checkbox" id="piecesInGramInput"/>
                                     <label  htmlFor="piecesInGramInput" className="arrows"/>
                                 </div>
@@ -174,6 +176,7 @@ class ShoppingList extends Component {
                             <td>{item.name}</td>
                             <td>{item.price}</td>
                             <td>{item.dateOfCreate}</td>
+                            <td>{item.expirationDate}</td>
                             <td>{item.pieces}</td>
                             <td>{item.piecesInGram}</td>
                             <td>
@@ -190,20 +193,13 @@ class ShoppingList extends Component {
                     ))}
                     </tbody>
                 </table>
-                <div>
-                <Link to={`/`}>
-                    <Button className="btn btn-primary" onClick={() => updateData(listData, data, id)}>
-                        Вернуться
-                    </Button>
-                </Link>
-                </div>
-
                 <ModalWindow
                     item={modalData || {}}
                     visible = {visible}
                     name={modalData.name || ''}
                     price={modalData.price || ''}
                     dateOfCreate={modalData.dateOfCreate || ''}
+                    expirationDateSet={modalData.expirationDateSet || ''}
                     pieces={modalData.pieces || ''}
                     piecesInGram={modalData.piecesInGram || ''}
                     saveModal={this.saveModal}

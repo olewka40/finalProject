@@ -41,12 +41,12 @@ class ModalWindow extends React.Component {
         this.setState({ loading: true });
         const { item } = this.props;
         const { name, dateOfCreate, address} = this.state;
-        this.props.saveModal({ ...item, name, dateOfCreate ,address })
+        this.props.saveModal({ ...item, name, dateOfCreate ,address });
         this.setState({ loading: false, visible: false ,name: '',dateOfCreate: '', address:''})
     };
 
     handleCancel = () => {
-        this.props.closeModal()
+        this.props.closeModal();
         setTimeout(() => {
             this.setState({ loading: false, visible: false , name: '',dateOfCreate: '', address:''});
         }, );
@@ -62,7 +62,7 @@ class ModalWindow extends React.Component {
             { address: data ? data.value : '' }
         );
     };
-    
+
 
     render() {
         const {  visible } = this.props;
