@@ -122,7 +122,6 @@ class ShoppingList extends Component {
     render() {
         const { itemId, visible, data, allData } = this.state;
         console.log(allData);
-        const { updateData, listData, id } = this.props;
         let modalData = data.find(el => el.id ===itemId ) || {};
 
         return (

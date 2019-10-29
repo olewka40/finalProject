@@ -1,6 +1,5 @@
 import React from 'react';
 import { Modal, Button } from 'antd';
-import { InputModal } from "../../styles/styles"
 import { ReactDadata } from 'react-dadata';
 
 const token = '939c4943fe50952cc56bdee4a1c729d7759ca6d1';
@@ -93,30 +92,49 @@ class ModalWindow extends React.Component {
                         <form className="form"
                               onSubmit={this.saveModal}
                         >
-                            <InputModal
-                                placeholder="Наименование"
-                                value={name}
-                                required
-                                onChange={(e) => this.nameSet(e)}
-                            />
-                            <InputModal
-                                type="date"
-                                placeholder="Дата создания"
-                                value={dateOfCreate}
-                                required
-                                onChange={(e) => this.dateOfCreateSet(e)}
-                            />
-                            <ReactDadata
-                                component={'input'}
-                                className="data"
-                                token={token}
-                                placeholder="Адрес"
-                                type="address"
-                                query={address}
-                                onChange={this.handleChange}
-                                allowClear
-                                required
-                            />
+                            <div className="input-group mb-3">
+                                <div className="input-group-prepend">
+                                    <span className="input-group-text" id="basic-addon1">Наименование</span>
+                                </div>
+                                <input type="text"
+                                       className="form-control"
+                                       aria-describedby="basic-addon1"
+                                       placeholder="Наименование"
+                                       value={name}
+                                       required
+                                       onChange={(e) => this.nameSet(e)}/>
+                            </div>
+                            <div className="input-group mb-3">
+                                <div className="input-group-prepend">
+                                    <span className="input-group-text" id="basic-addon1">Дата создания</span>
+                                </div>
+                                <input className="form-control"
+                                       aria-describedby="basic-addon1"
+                                       type="date"
+                                       placeholder="Дата создания"
+                                       value={dateOfCreate}
+                                       required
+                                       onChange={(e) => this.dateOfCreateSet(e)}
+                                />
+                            </div>
+                            <div className="input-group mb-3">
+                                <div className="input-group-prepend">
+                                    <span className="input-group-text" id="basic-addon1">Адрес</span>
+                                </div>
+                                <ReactDadata
+                                    className="form-control"
+                                    aria-describedby="basic-addon1"
+                                    component={'input'}
+                                    token={token}
+                                    placeholder="Адрес"
+                                    type="address"
+                                    query={address}
+                                    onChange={this.handleChange}
+                                    allowClear
+                                    required
+                                />
+                            </div>
+
                             <input
                                 type="submit"
                                 id="submitInput"

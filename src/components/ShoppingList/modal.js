@@ -1,7 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'antd';
 import "./index.css";
-import { InputModal } from '../../styles/styles';
 
 class ModalWindow extends React.Component {
     state = {
@@ -99,13 +98,87 @@ class ModalWindow extends React.Component {
                     ]}
                 >
                 <form className="form" onSubmit={this.saveModal} >
-                    <InputModal value={name} required placeholder="Наименование" onChange={(e) => this.nameSet(e)} />
-                    <InputModal value={price} type="number" min="0" required placeholder="Цена (RUB)" onChange={(e) => this.priceSet(e)} />
-                    <InputModal value={dateOfCreate} type="date" required placeholder="Дата изготовления" onChange={(e) => this.dateOfCreateSet(e)} />
-                    <InputModal value={expirationDate} type="num" min="0" required placeholder="Срок годности (дни)" onChange={(e) => this.expirationDateSet(e)} />
-                    <InputModal value={pieces} type="number" min="0" required  placeholder="Количество (шт)" onChange={(e) => this.piecesSet(e)} />
-                    <InputModal value={piecesInGram} type="number" min="0"  placeholder="Количество (грамм)" onChange={(e) => this.piecesInGramSet(e)} />
-                    <input type="submit" id="submitInput" hidden/>
+                    <div className="input-group mb-3">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text" id="basic-addon1">Наименование</span>
+                        </div>
+                        <input className="form-control"
+                               aria-describedby="basic-addon1"
+                               value={name}
+                               required
+                               placeholder="Наименование"
+                               onChange={(e) => this.nameSet(e)} />
+                    </div>
+                    <div className="input-group mb-3">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text" id="basic-addon1">Цена(RUB)</span>
+                        </div>
+                        <input className="form-control"
+                               aria-describedby="basic-addon1"
+                               value={price}
+                               type="number"
+                               min="0"
+                               required
+                               placeholder="Цена (RUB)"
+                               onChange={(e) => this.priceSet(e)}
+                        />
+                    </div>
+                    <div className="input-group mb-3">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text" id="basic-addon1">Дата изготовления</span>
+                        </div>
+                        <input className="form-control"
+                               aria-describedby="basic-addon1"
+                               value={dateOfCreate}
+                               type="date"
+                               required
+                               placeholder="Дата изготовления"
+                               onChange={(e) => this.dateOfCreateSet(e)}
+                        />
+                    </div>
+                    <div className="input-group mb-3">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text" id="basic-addon1">Срок годности (дни)</span>
+                        </div>
+                        <input className="form-control"
+                               aria-describedby="basic-addon1"
+                               value={expirationDate}
+                               type="num"
+                               min="0"
+                               required placeholder="Срок годности (дни)"
+                               onChange={(e) => this.expirationDateSet(e)}/>
+                    </div>
+                    <div className="input-group mb-3">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text" id="basic-addon1">Количество (шт)</span>
+                        </div>
+                        <input className="form-control"
+                               aria-describedby="basic-addon1"
+                               value={pieces}
+                               type="number"
+                               min="0"
+                               required
+                               placeholder="Количество (шт)"
+                               onChange={(e) => this.piecesSet(e)}
+                        />
+                    </div>
+                    <div className="input-group mb-3">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text" id="basic-addon1">Количество (грамм)</span>
+                        </div>
+                        <input className="form-control"
+                               aria-describedby="basic-addon1"
+                               value={piecesInGram}
+                               type="number"
+                               min="0"
+                               placeholder="Количество (грамм)"
+                               onChange={(e) => this.piecesInGramSet(e)}
+                        />
+                    </div>
+                    <input
+                        type="submit"
+                        id="submitInput"
+                        hidden/>
                 </form>
                 </Modal>
             </div>
